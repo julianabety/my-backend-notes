@@ -26,10 +26,6 @@ Sem o Express, criar um servidor com Node puro exige muito mais linhas de códig
 ---
 
 ## Configuração do Node.Js e Express
-
-### Como executar o Node.js?
-## Configuração do Node.js e Express
-
 ### Como iniciar o Node.js?
 Para iniciar o projeto com Node.js, vá ao terminal e digite o comando abaixo. Ele iniciará o servidor e criará o arquivo `package.json`:
 
