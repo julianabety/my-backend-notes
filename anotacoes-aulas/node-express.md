@@ -29,7 +29,7 @@ Sem o Express, criar um servidor com Node puro exige muito mais linhas de códig
 ### Como iniciar o Node.js?
 Para iniciar o projeto com Node.js, vá ao terminal e digite o comando abaixo. Ele iniciará o servidor e criará o arquivo `package.json`:
 
-```bash
+
 npm init -y
 
 ### Como executar o Express?
@@ -157,5 +157,39 @@ PORT=3000           # Porta onde o servidor irá rodar
 DB_HOST=localhost   # Host do banco de dados
 DB_USER=root        # Usuário do banco de dados
 DB_PASSWORD=senha   # Senha do banco de dados
+
+---
+# Gerenciamento de Variáveis com Dotenv
+
+## O que é o Dotenv?
+É um pacote que carrega variáveis de ambiente de um arquivo `.env` para o `process.env`. Isso permite que o código JavaScript acesse as configurações que definimos fora do código-fonte.
+
+### 📥 Instalação
+Para utilizar, precisamos instalar o pacote no projeto:
+
+```bash
+npm install dotenv
+
+### Como utilizar no código?
+Para que o servidor reconheça as variáveis do arquivo .env, precisamos importar e configurar o dotenv logo no início do arquivo principal (server.js ou app.js).
+
+Exemplo de Configuração no server.js:
+
+// Importando o dotenv
+require('dotenv').config();
+
+// Agora podemos acessar a variável PORT que definimos no .env
+const port = process.env.PORT || 3000;
+
+console.log(`O servidor está rodando na porta ${port}`);
+
+### 🛠️ Por que o Dotenv é importante?
+1. Segurança: Impede que dados sensíveis (como senhas de banco de dados) fiquem expostos no código enviado para o GitHub.
+
+2. Flexibilidade: Permite mudar a porta ou o banco de dados sem precisar alterar a lógica do código principal.
+
+3. Ambientes: Facilita ter configurações diferentes para o seu computador (desenvolvimento) e para o servidor onde o site ficará hospedado (produção).
+
+4. Nota: Sempre que adicionar ou alterar uma variável no .env, o servidor precisa ser reiniciado (o Nodemon faz isso !)
 
 
