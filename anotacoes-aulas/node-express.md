@@ -58,7 +58,8 @@ Para colocar o sistema de pé, seguimos estes passos iniciais:
 3. Criar o arquivo .env: Onde guardamos variáveis de ambiente sensíveis.
 
 ### 💡 Dica:
-O **`.gitignore`**, é muito importante lembrar que a pasta `node_modules` é extremamente pesada e nunca deve ser enviada para o GitHub. O arquivo `package.json` é quem "guarda a lista" do que precisa ser instalado; quando outra pessoa baixar o projeto, ela só precisará rodar um `npm install` para recuperar tudo.
+O **`.gitignore`**, é muito importante lembrar que a pasta `node_modules` é extremamente pesada e nunca deve ser enviada para o GitHub. O arquivo `package.json` 
+é quem "guarda a lista" do que precisa ser instalado; quando outra pessoa baixar o projeto, ela só precisará rodar um `npm install` para recuperar tudo.
 
 ---
 # Estrutura do Arquivo server.js
@@ -66,7 +67,8 @@ O **`.gitignore`**, é muito importante lembrar que a pasta `node_modules` é ex
 ## Para que serve o server.js?
 O arquivo `server.js` é o **ponto de entrada** para o nosso servidor web. Ele é responsável por configurar e iniciar o servidor, definindo as rotas e o comportamento do aplicativo. 
 
-Quando executamos o comando `node server.js`, o Node.js lê esse arquivo, cria o servidor e começa a escutar as requisições na porta especificada (neste caso, a porta 3000). Assim, quando um usuário acessa `http://localhost:3000`, o servidor responde com "Hello World!" conforme definido na rota.
+Quando executamos o comando `node server.js`, o Node.js lê esse arquivo, cria o servidor e começa a escutar as requisições na porta especificada (neste caso, a porta 3000.
+Assim, quando um usuário acessa `http://localhost:3000`, o servidor responde com "Hello World!" conforme definido na rota.
 
 ---
 
@@ -96,5 +98,64 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-// Para executar o servidor, basta usar o comando "node server.js" no terminal. Depois disso, você pode abrir um navegador e acessar http://localhost:3000 para ver a mensagem "Hello World!" sendo exibida
+// Para executar o servidor, basta usar o comando "node server.js" no terminal. Depois disso, você pode abrir um navegador e 
+acessar http://localhost:3000 para ver a mensagem "Hello World!" sendo exibida
+
+---
+# Facilitando o Desenvolvimento (Auto-reload)
+
+No dia a dia, ficar parando e reiniciando o servidor manualmente a cada pequena alteração no código é cansativo. Para resolver isso, usamos ferramentas 
+que observam as mudanças nos arquivos e reiniciam o servidor automaticamente.
+
+### 1. Node --watch (Nativo)
+A partir das versões mais recentes do Node.js, foi incluída uma função nativa de "observação". Para usá-la, basta rodar:
+
+```bash
+node --watch server.js
+
+### 2. Nodemon (Pacote Externo)
+O **Nodemon** é uma das ferramentas mais clássicas para reiniciar o servidor automaticamente. A instalação utilizando a flag completa:
+
+**Como instalar:**
+npm install --save-dev nodemon
+
+**Por que usar --save-dev?**
+Essa flag indica que o Nodemon é uma dependência de desenvolvimento. Isso significa que ele só é necessário enquanto estamos construindo o código na nossa máquina. 
+Quando o sistema for publicado (produção), ele não será instalado, deixando o projeto mais leve e seguro.
+
+**Como executar via terminal:**
+npx nodemon server.js
+
+**Configuração de Atalhos (Scripts)**
+Para facilitar a execução, configuramos "atalhos" dentro do arquivo package.json na seção de "scripts". Isso evita ter que digitar comandos longos toda vez.
+
+**Exemplo de configuração no package.json:**
+"scripts": {
+  "start": "node server.js",
+  "dev": "nodemon server.js"
+}
+
+**Como usar os atalhos:**
+
+Para rodar o servidor normalmente: npm start
+
+Para rodar com o Nodemon (auto-reload): npm run dev
+
+---
+# Variavél de Ambiente
+
+## .env o que é?
+O arquivo .env serve para armazenar variáveis de ambiente, como senhas, chaves de API, etc. Ele é útil para manter essas informações fora do código-fonte e facilitar a configuração entre os ambientes de desenvolvimento e produção.
+
+No caso do projeto em execução, o arquivo .env pode conter variáveis como a porta do servidor, a URL do banco de dados, ou outras configurações específicas.
+
+🚨 Segurança: O arquivo .env deve ser adicionado obrigatoriamente no .gitignore para que essas informações sensíveis não se tornem públicas no GitHub.
+
+Exemplo prático de um arquivo .env:
+
+PORT=3000           # Porta onde o servidor irá rodar
+DB_HOST=localhost   # Host do banco de dados
+DB_USER=root        # Usuário do banco de dados
+DB_PASSWORD=senha   # Senha do banco de dados
+
 
