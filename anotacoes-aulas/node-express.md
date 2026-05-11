@@ -178,7 +178,7 @@ Exemplo de Configuração no server.js:
 // Importando o dotenv
 require('dotenv').config();
 
-// Agora podemos acessar a variável PORT que definimos no .env
+// Agora podemos acessar a variável PORT que definimos no .env. Após o deploy, irá buscar no .env a variável PORT, e se não encontrar, usará a porta 3000.
 const port = process.env.PORT || 3000;
 
 console.log(`O servidor está rodando na porta ${port}`);
@@ -191,5 +191,7 @@ console.log(`O servidor está rodando na porta ${port}`);
 3. Ambientes: Facilita ter configurações diferentes para o seu computador (desenvolvimento) e para o servidor onde o site ficará hospedado (produção).
 
 4. Nota: Sempre que adicionar ou alterar uma variável no .env, o servidor precisa ser reiniciado (o Nodemon faz isso !)
+
+---
 
 
