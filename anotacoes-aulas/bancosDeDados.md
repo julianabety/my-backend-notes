@@ -60,4 +60,58 @@ Não utilizam o modelo de tabelas fixas para armazenar informações. São altam
 ### 3. Tipos NoSQL
 ![alt text](image.png)
 
+---
+## Linguagem SQL
+Para usar um banco de dados relacional é preciso de uma linguagem de consulta, e a **SQL** (Structured Query Language) é a mais usada atualmente para esta finalidade. Seus comandos são divididos em categorias principais:
+
+* **DDL (Linguagem de Definição de Dados):** São comandos utilizados para definir e modificar a estrutura do banco, incluindo bases de dados, tabelas, índices e relacionamentos. 
+  * *Exemplos:* `CREATE DATABASE`, `CREATE TABLE`, `ALTER TABLE`, `DROP TABLE`.
+* **DML (Linguagem de Manipulação de Dados):** São utilizados para manipular os dados/registros dentro das tabelas. Esses comandos não alteram a estrutura da tabela, somente as informações salvas. 
+  * *Exemplos:* `INSERT`, `UPDATE`, `DELETE`, `SELECT`.
+* **DCL (Linguagem de Controle de Dados):** Comandos usados para gerenciar permissões, segurança e controle de acesso de usuários no banco. 
+  * *Exemplos:* `GRANT`, `REVOKE`.
+* **TCL (Linguagem de Controle de Transações):** Comandos usados para gerenciar as alterações feitas por comandos DML, garantindo que as operações sejam salvas com segurança ou canceladas em caso de erro.
+  * *Exemplos:* `COMMIT`, `ROLLBACK`.
+
+### 📑 Principais Comandos DDL
+
+![alt text](image-2.png)
+
+### 📑 Principais Comandos DML
+
+![alt text](image-3.png)
+
+---
+### Constraints (Restrições)
+
+As **Constraints** são regras aplicadas às colunas de uma tabela para garantir a integridade, consistência e confiabilidade dos dados. Elas impedem que valores inválidos ou incorretos sejam inseridos, mantendo a organização correta do banco.
+
+* Servem para evitar erros e duplicidade de dados.
+* Ajudam a definir restrições como valores únicos, campos obrigatórios e relações entre tabelas.
+
+| Tipo | Como podemos usar / O que faz |
+| :--- | :--- |
+| **PRIMARY KEY** | Identifica cada registro da tabela de forma única. Não aceita valores nulos ou duplicados. |
+| **SERIAL / AUTO_INCREMENT** | Gera valores numéricos automáticos sequenciais (1, 2, 3...). *Nota: No PostgreSQL, usamos o tipo `SERIAL` para isso.* |
+| **NOT NULL** | Impede que a coluna fique vazia, tornando o preenchimento obrigatório. |
+| **UNIQUE** | Garante que todos os valores em uma coluna sejam diferentes (Ex: e-mail ou CPF). |
+
+**Exemplos Práticos:**
+* `id SERIAL PRIMARY KEY` : Cria um ID que gera números automáticos sequenciais como chave primária (Padrão do PostgreSQL).
+* `nome VARCHAR(30) NOT NULL` : A coluna de nome torna-se obrigatória e não pode ficar vazia.
+
+---
+
+### Tipos Primitivos (Tipos de Dados)
+Definem o formato e a maneira como os dados são armazenados no banco de dados. Eles garantem que as informações sejam organizadas corretamente e otimizam o desempenho das consultas.
+
+| Tipo | Descrição | Exemplo |
+| :--- | :--- | :--- |
+| **INT / INTEGER** | Números inteiros padrão (médios). | `25`, `1050` |
+| **BIGINT** | Números inteiros muito grandes (usado para IDs ou sistemas gigantes). | `9000000000000000` |
+| **DECIMAL / NUMERIC**| Números decimais exatos (ideal para valores monetários/dinheiro). | `10.50`, `1450.99` |
+| **CHAR(N)** | Texto de tamanho **fixo**. Se você definir `CHAR(10)` e salvar 'OI', o banco preencherá o resto com espaços vazios. | `CHAR(2) -> 'MG'` |
+| **VARCHAR(N)** | Texto de tamanho **variável**. Se você definir `VARCHAR(50)` e salvar 'OI', o banco gastará espaço apenas para as 2 letras. | `VARCHAR(100) -> 'Contato'` |
+| **DATE** | Armazena apenas a data (Ano-Mês-Dia). | `2026-05-15` |
+| **TIMESTAMP** | Armazena data e hora completas. | `2026-05-15 14:30:00` |
 
