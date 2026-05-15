@@ -33,19 +33,42 @@ Para interagir com o PostgreSQL, geralmente usamos:
 
 ## Comandos Iniciais (SQL)
 
-Aqui estão alguns comandos básicos que você verá logo no início:
-
 ```sql
--- Criar uma tabela de usuários
+-- Comentário de uma linha
+/* Comentário de 
+várias linhas */
+
+-- 1. Criar um banco de dados
+CREATE DATABASE movifit;
+
+-- 2. Criar uma tabela de usuários
 CREATE TABLE usuarios (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL
 );
 
--- Inserir um dado
+-- 3. Inserir dados (Exemplo individual)
 INSERT INTO usuarios (nome, email) 
 VALUES ('Juliana', 'juliana@email.com');
 
--- Consultar dados
+-- 4. Inserir múltiplos dados de uma vez (Sintaxe correta)
+INSERT INTO usuarios (nome, email) 
+VALUES 
+    ('Juliana', 'juliana@email.com'),
+    ('Julia', 'julia@email.com');
+
+-- 5. Consultar dados
 SELECT * FROM usuarios;
+
+-- 6. Atualizar dados na tabela (Importante usar o WHERE!)
+UPDATE usuarios 
+SET email = 'julia123@email.com' 
+WHERE nome = 'Julia';
+
+-- 7. Excluir dados na tabela
+DELETE FROM usuarios 
+WHERE id = 2;
+
+-- 8. Apagar um banco de dados completo
+DROP DATABASE movifit;
